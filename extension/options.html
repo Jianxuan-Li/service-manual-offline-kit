@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>TIS Page Saver — Options</title>
+  <style>
+    body { font-family: -apple-system, "Segoe UI", sans-serif; max-width: 620px;
+           margin: 32px auto; padding: 0 20px; line-height: 1.5; color: #222; }
+    h1 { font-size: 20px; margin: 0 0 4px; }
+    .sub { color: #666; font-size: 13px; margin-bottom: 24px; }
+    label.field { display: block; font-weight: 600; margin: 20px 0 6px; }
+    input[type=text] { width: 100%; padding: 8px 10px; font-size: 14px;
+                       border: 1px solid #bbb; border-radius: 5px; box-sizing: border-box; }
+    .hint { color: #666; font-size: 12px; margin-top: 6px; }
+    .preview { font-family: ui-monospace, Menlo, monospace; font-size: 12px;
+               background: #f4f4f4; border-left: 3px solid #08c;
+               padding: 8px 10px; margin-top: 8px; word-break: break-all; }
+    .row { display: flex; align-items: flex-start; gap: 8px; margin: 16px 0; }
+    .row input { margin-top: 3px; }
+    .row div { font-size: 13px; }
+    .row b { display: block; font-weight: 600; }
+    button { background: #08c; color: #fff; border: 0; border-radius: 5px;
+             padding: 9px 20px; font-size: 14px; cursor: pointer; margin-top: 24px; }
+    button:hover { background: #069; }
+    #status { display: inline-block; margin-left: 12px; color: #0a0;
+              font-size: 13px; opacity: 0; transition: opacity .2s; }
+    #status.show { opacity: 1; }
+    .note { background: #fff8e1; border-left: 3px solid #e6a700;
+            padding: 10px 14px; font-size: 12.5px; margin-top: 28px; }
+    code { background: #eee; padding: 1px 4px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>TIS Page Saver</h1>
+  <div class="sub">Settings for where captured manual pages are written.</div>
+
+  <label class="field" for="folder">Save folder</label>
+  <input type="text" id="folder" placeholder="TIS" spellcheck="false">
+  <div class="hint">
+    Relative to your browser's Downloads directory. Use <code>/</code> for
+    sub-levels, e.g. <code>cars/gs450h</code>. Leave blank to save at the
+    Downloads root.
+  </div>
+  <div class="preview" id="preview"></div>
+
+  <div class="row">
+    <input type="checkbox" id="overwrite">
+    <div>
+      <b>Overwrite existing files</b>
+      Re-saving the same page replaces it instead of creating
+      <code>adjustment (1).html</code>. Recommended.
+    </div>
+  </div>
+
+  <div class="row">
+    <input type="checkbox" id="groupByVehicle">
+    <div>
+      <b>Put each vehicle in its own folder</b>
+      Adds a <code>gs450h_2007</code> level at the top. Turn this on if you look
+      up manuals for more than one car.
+    </div>
+  </div>
+
+  <div class="row">
+    <input type="checkbox" id="notifications">
+    <div>
+      <b>Show a message when something goes wrong</b>
+      A desktop notification explaining what happened, instead of just a red
+      badge on the icon.
+    </div>
+  </div>
+
+  <div class="row">
+    <input type="checkbox" id="saveAs">
+    <div>
+      <b>Ask where to save each time</b>
+      Opens the system file picker so you can save anywhere on disk, outside
+      Downloads. Slow if you are saving many pages in a row.
+    </div>
+  </div>
+
+  <button id="save">Save settings</button>
+  <span id="status">Saved</span>
+
+  <div class="hint" id="lastSaved" style="margin-top:18px"></div>
+
+  <div class="note">
+    <b>Why can't I pick any folder directly?</b><br>
+    Chrome extensions can only write inside the browser's Downloads directory —
+    absolute paths are rejected by the browser, not by this extension. Three ways
+    around it: (1) set a memorable sub-folder above; (2) tick "Ask where to save
+    each time"; or (3) change Chrome's own download location in
+    <code>chrome://settings/downloads</code>, which affects all downloads.
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
