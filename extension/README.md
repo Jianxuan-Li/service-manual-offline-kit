@@ -48,7 +48,11 @@ unpacked extension, which is how this one is distributed.
    the illustrations.
 2. Click the toolbar icon.
 
-The badge on the icon tells you what happened:
+A green **✓** on the icon means the page you are reading has already been
+saved; the tooltip shows where and when. Clicking still saves again, replacing
+the old copy.
+
+The badge on the icon tells you what happened when you click:
 
 | Badge | Meaning |
 | --- | --- |
@@ -57,6 +61,16 @@ The badge on the icon tells you what happened:
 | `OK*` (amber) | Saved, but the navigation tree could not be read, so the folders were derived from the page title instead. The file is fine. |
 | `ERR` (red) | Failed — see the notification for the reason. |
 | `!` (red) | This tab isn't a TIS page. |
+| `✓` (green) | Already saved earlier &mdash; not a click result, it is the resting state. |
+
+### Backfilling the already-saved index
+
+Pages saved before this feature existed are not in the index. Rebuild it from
+your archive and load the file from the Options page:
+
+```bash
+node build-index.js ~/Downloads/TIS
+```
 
 Saved files land in `Downloads/TIS/` by default.
 

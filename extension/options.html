@@ -84,6 +84,22 @@
 
   <div class="hint" id="lastSaved" style="margin-top:18px"></div>
 
+  <h2 style="font-size:15px;margin:32px 0 6px">Already-saved index</h2>
+  <div class="hint" id="indexCount"></div>
+  <div class="hint" style="margin-top:8px">
+    The toolbar icon shows a green <b>✓</b> when the page you are reading has
+    already been saved. Pages saved before this feature existed are not in the
+    index yet &mdash; rebuild it from your archive and load it here:
+  </div>
+  <div class="preview">node build-index.js ~/Downloads/TIS</div>
+  <div style="margin-top:10px">
+    <input type="file" id="indexFile" accept="application/json,.json">
+    <span id="importStatus" class="hint"></span>
+  </div>
+  <div style="margin-top:10px">
+    <button id="clearIndex" style="background:#999;font-size:13px;padding:6px 14px">Clear index</button>
+  </div>
+
   <div class="note">
     <b>Why can't I pick any folder directly?</b><br>
     Chrome extensions can only write inside the browser's Downloads directory —

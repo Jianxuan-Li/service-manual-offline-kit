@@ -50,6 +50,64 @@ chrome.storage.local.get({ lastSaved: "", lastSavedAt: 0 }, (s) => {
     (s.lastSavedAt ? "  (" + new Date(s.lastSavedAt).toLocaleString() + ")" : "");
 });
 
+const $indexCount = document.getElementById("indexCount");
+const $indexFile = document.getElementById("indexFile");
+const $importStatus = document.getElementById("importStatus");
+
+function renderIndexCount() {
+  chrome.storage.local.get({ savedDocs: {} }, (s) => {
+    const n = Object.keys(s.savedDocs).length;
+    $indexCount.textContent = n
+      ? n + " document(s) known to be saved."
+      : "No documents indexed yet.";
+  });
+}
+renderIndexCount();
+
+$indexFile.addEventListener("change", () => {
+  const file = $indexFile.files && $indexFile.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    let incoming;
+    try {
+      incoming = JSON.parse(reader.result);
+    } catch (e) {
+      $importStatus.textContent = "Not valid JSON.";
+      return;
+    }
+    if (!incoming || typeof incoming !== "object" || Array.isArray(incoming)) {
+      $importStatus.textContent = "Unexpected file format.";
+      return;
+    }
+    // Merge rather than replace: anything saved since the file was built
+    // should survive the import.
+    chrome.storage.local.get({ savedDocs: {} }, (s) => {
+      const merged = s.savedDocs;
+      let added = 0;
+      for (const [docId, rec] of Object.entries(incoming)) {
+        if (!rec || typeof rec !== "object") continue;
+        if (!merged[docId] || (merged[docId].at || 0) < (rec.at || 0)) {
+          merged[docId] = { path: String(rec.path || ""), at: Number(rec.at) || Date.now() };
+          added++;
+        }
+      }
+      chrome.storage.local.set({ savedDocs: merged }, () => {
+        $importStatus.textContent = "Imported " + added + " entries.";
+        renderIndexCount();
+      });
+    });
+  };
+  reader.readAsText(file);
+});
+
+document.getElementById("clearIndex").addEventListener("click", () => {
+  chrome.storage.local.set({ savedDocs: {} }, () => {
+    $importStatus.textContent = "Index cleared.";
+    renderIndexCount();
+  });
+});
+
 $folder.addEventListener("input", renderPreview);
 $groupByVehicle.addEventListener("change", renderPreview);
 

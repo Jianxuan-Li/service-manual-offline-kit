@@ -197,6 +197,64 @@ function buildPath(payload, cfg) {
   return dedupe(parts).concat(file).join("/");
 }
 
+// ---- "already saved" index ----
+// Keyed by the document id, which is the one identifier that appears in the
+// viewer's own frame URL. That means the badge can be answered from the URL
+// alone, with no need to inject anything into the page just to look.
+const INDEX_KEY = "savedDocs";
+
+function docIdFromUrl(url) {
+  const m = String(url || "").match(/\/xhtml\/([A-Za-z0-9_-]+)\.x?html?(?:[?#]|$)/);
+  return m ? m[1] : "";
+}
+
+async function markSaved(docId, relPath) {
+  if (!docId) return;
+  const store = await chrome.storage.local.get({ [INDEX_KEY]: {} });
+  const index = store[INDEX_KEY];
+  index[docId] = { path: relPath, at: Date.now() };
+  await chrome.storage.local.set({ [INDEX_KEY]: index });
+}
+
+// Per-tab memory of which document is on screen, so the badge can be restored
+// after a transient "..."/"OK" status without re-reading the page.
+const tabDoc = {};
+
+async function refreshBadge(tabId, docId) {
+  if (docId) tabDoc[tabId] = docId;
+  const id = docId || tabDoc[tabId];
+  if (!id) return;
+  const store = await chrome.storage.local.get({ [INDEX_KEY]: {} });
+  const hit = store[INDEX_KEY][id];
+  try {
+    if (hit) {
+      chrome.action.setBadgeText({ tabId: tabId, text: "✓" });
+      chrome.action.setBadgeBackgroundColor({ tabId: tabId, color: "#0a0" });
+      chrome.action.setTitle({
+        tabId: tabId,
+        title: "Already saved " + new Date(hit.at).toLocaleDateString() +
+          "\n" + hit.path + "\nClick to save again (replaces it).",
+      });
+    } else {
+      chrome.action.setBadgeText({ tabId: tabId, text: "" });
+      chrome.action.setTitle({ tabId: tabId, title: "Save this TIS page for offline use" });
+    }
+  } catch (e) { /* tab closed mid-check */ }
+}
+
+// The manual body is a sub-frame that navigates on its own, so a plain
+// tabs.onUpdated never fires for it -- watch frame commits instead.
+chrome.webNavigation.onCommitted.addListener(
+  (d) => {
+    const docId = docIdFromUrl(d.url);
+    if (docId) refreshBadge(d.tabId, docId);
+  },
+  { url: [{ hostSuffix: "techinfo.toyota.com", pathContains: "/xhtml/" }] }
+);
+
+chrome.tabs.onActivated.addListener((info) => refreshBadge(info.tabId, null));
+chrome.tabs.onRemoved.addListener((tabId) => { delete tabDoc[tabId]; });
+
 // A one-line explanation the user can actually act on, instead of "ERR".
 function notify(cfg, title, message) {
   if (cfg && cfg.notifications === false) return;
@@ -267,6 +325,7 @@ chrome.action.onClicked.addListener(async (tab) => {
     });
 
     chrome.storage.local.set({ lastSaved: fullPath, lastSavedAt: Date.now() });
+    await markSaved(payload.docId, fullPath);
 
     // "OK" = folders came from the real nav tree, "OK*" = from the title map.
     chrome.action.setBadgeText({ tabId: tab.id, text: usedTree ? "OK" : "OK*" });
@@ -288,7 +347,8 @@ chrome.action.onClicked.addListener(async (tab) => {
     chrome.action.setBadgeBackgroundColor({ tabId: tab.id, color: "#c00" });
     notify(cfg, "Could not save this page", String((e && e.message) || e));
   }
-  setTimeout(() => chrome.action.setBadgeText({ tabId: tab.id, text: "" }), 3000);
+  // Let the transient status show, then fall back to the persistent "✓".
+  setTimeout(() => refreshBadge(tab.id, null).catch(() => {}), 3000);
 });
 
 // ---- Injected into the TIS page ----
