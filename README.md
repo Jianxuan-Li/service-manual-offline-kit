@@ -77,8 +77,9 @@ hands, poor light, no signal, and a vehicle on stands. Tickable checkboxes,
 big tap targets, dark-mode aware, line art inverted so it stays readable on a
 dark screen, tables that scroll instead of squashing.
 
-See [examples/job-sheet-example.html](examples/job-sheet-example.html) — open
-it locally; the figure and every specification in it are invented.
+See [examples/job-sheet-rear-brake-pads.html](examples/job-sheet-rear-brake-pads.html)
+and [examples/job-sheet-example.html](examples/job-sheet-example.html) — open
+them locally; the figures and every specification in them are invented.
 
 The rule the skill is built around: **torque values and wear limits are quoted
 from the manual pages read during the task, never from recollection.** A number

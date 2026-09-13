@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Example Job Sheet — Rear Brake Pads</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Segoe UI",system-ui,sans-serif;
+max-width:820px;margin:0 auto;padding:16px 14px 64px;line-height:1.6;
+color:#1a1a1a;background:#fff;-webkit-text-size-adjust:100%}
+h1{font-size:22px;border-bottom:3px solid #c00;padding-bottom:8px;margin:0 0 14px}
+h2{font-size:18px;margin:30px 0 10px;padding:7px 10px;background:#f0f0f0;
+border-left:4px solid #c00;border-radius:3px}
+h3{font-size:15.5px;margin:20px 0 8px;color:#c00}
+p{margin:8px 0}
+.li{margin:6px 0 6px 20px;position:relative}
+.li:before{content:"\2022";position:absolute;left:-14px;color:#c00}
+.li.n:before{content:attr(data-n) ".";left:-20px;font-weight:700;font-size:13px}
+.cal{margin:12px 0;padding:10px 13px;border-radius:3px;font-size:14.5px;border-left:4px solid}
+.warn{background:#fff8e1;border-color:#e6a700}
+.danger{background:#ffebee;border-color:#c00;font-weight:600}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{border:1px solid #ccc;padding:7px 9px;text-align:left;white-space:nowrap}
+th{background:#f4f4f4}
+code{background:#eee;padding:1px 5px;border-radius:3px;font-size:13px;word-break:break-all}
+del{color:#999}
+hr{border:0;border-top:1px solid #ddd;margin:26px 0}
+figure{margin:16px 0;padding:12px;background:#fafafa;border:1px solid #e0e0e0;border-radius:6px}
+figure img{width:100%;height:auto;display:block;border-radius:3px}
+figcaption{font-size:13px;color:#555;margin-top:8px;line-height:1.45}
+.ck{display:flex;align-items:flex-start;gap:10px;margin:7px 0;padding:9px 11px;
+background:#f7f7f7;border-radius:5px;cursor:pointer}
+.ck input{margin:3px 0 0;width:20px;height:20px;flex:none;accent-color:#c00}
+.ck input:checked+span{text-decoration:line-through;color:#999}
+@media(prefers-color-scheme:dark){
+body{background:#181818;color:#e8e8e8}
+h2{background:#262626}h3{color:#ff6b6b}
+.warn{background:#3a3225;border-color:#c9a227}
+.danger{background:#3d2222;border-color:#e05252}
+th{background:#262626}th,td{border-color:#444}
+code{background:#2c2c2c}
+figure{background:#202020;border-color:#333}figcaption{color:#aaa}
+.ck{background:#222}
+hr{border-top-color:#333}
+figure img{filter:invert(1) hue-rotate(180deg)}}
+@media print{.ck,h2{background:none}body{padding:0}}
+</style>
+</head>
+<body>
+<h1>Example Job Sheet — Rear Brake Pads</h1>
+<div class="cal warn">This is a <strong>format demonstration</strong>, not a real procedure. Every figure, torque value and wear limit below is invented. Do not follow it on a vehicle — build your own sheet from your own manual pages, for your own car.</div>
+<p>Source: your own service manual subscription.</p>
+<p><strong>Not touched in this job:</strong> the hydraulic system. No line is opened, no fluid is drained, no bleeding is required. Discs stay on the car.</p>
+<hr>
+<h2>0. Before leaving the house</h2>
+<label class="ck"><input type="checkbox"><span>New pads confirmed against the caliper — measure, don't trust the box</span></label>
+<label class="ck"><input type="checkbox"><span>Scan tool that can put the parking brake into maintenance mode, tested and paired <strong>before</strong> jacking the car</span></label>
+<label class="ck"><input type="checkbox"><span>Sockets confirmed by trial fit on the actual bolts</span></label>
+<label class="ck"><input type="checkbox"><span>Torque wrench covering both 12 N·m and 110 N·m — usually two wrenches</span></label>
+<label class="ck"><input type="checkbox"><span>Piston tool: check whether this caliper presses or <strong>screws</strong> in (§2)</span></label>
+<label class="ck"><input type="checkbox"><span>Jack, two axle stands, four wheel chocks</span></label>
+<label class="ck"><input type="checkbox"><span>Wire to hang the caliper — never let it hang on the flexible hose</span></label>
+<label class="ck"><input type="checkbox"><span>Brake cleaner, high-temperature grease, a turkey baster for fluid</span></label>
+<label class="ck"><input type="checkbox"><span>One-time parts on hand (see torque table)</span></label>
+<label class="ck"><input type="checkbox"><span>Phone charged, this file saved offline</span></label>
+<div class="cal warn">Retracting two rear pistons pushes fluid back up the system. If the reservoir is at MAX now, draw some out before you start — not while it is running down the wing.</div>
+<hr>
+<h2>1. Securing the vehicle</h2>
+<div class="li n" data-n="1">Park on the flattest ground available, nose uphill</div>
+<div class="li n" data-n="2">Chock both wheels of the axle staying down, front and back of each</div>
+<div class="li n" data-n="3">Loosen the wheel nuts while the wheel is still on the ground</div>
+<div class="li n" data-n="4">Power off, confirm the ready lamp is out</div>
+<div class="li n" data-n="5">Jack at the designated point, support at the designated points</div>
+<div class="li n" data-n="6">Do both sides — pads are replaced in axle sets, never one corner</div>
+<div class="cal danger">Never place any part of your body under a vehicle held only by a jack, however briefly.</div>
+<hr>
+<h2>2. Vehicle-specific cautions</h2>
+<div class="cal danger">If the rear calipers carry an electric parking brake, the actuator must be put into maintenance mode with a scan tool before the piston is retracted. Forcing a motor-driven piston back mechanically strips the actuator gearing — this is the one step that turns a two-hour job into a new caliper.</div>
+<div class="cal danger">Do not press the brake pedal while the pads are out. The piston will come past its seal, and you will be opening the hydraulic system after all.</div>
+<div class="cal warn">Rear pistons on parking-brake calipers frequently <strong>screw</strong> in clockwise rather than pressing straight in. Establish which type this is before reaching for a G-clamp — pressing a screw-in piston destroys the mechanism.</div>
+<div class="cal warn">Take the parking brake out of maintenance mode before road testing, and confirm the dash warning has cleared.</div>
+<hr>
+<h2>3. Disassembly</h2>
+<figure><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjAAAAEsCAIAAABSbx5FAAAgVklEQVR4nO3dfVTUZf7/8c94A+EIJLqwMIUa3jCmHHDDFbvR1FIkxUADWUw0vAvyhqOGHs6eTLfF03ZKQ1NpNRKOA+FNJYitletGgIZiKIJg6x0SgXFj4QjE/E5+vufzYwdBRBgumOfjr+Fzc13XXHDmxfv6fGZGZTAYJAAAOluPzh4AAAC/I5AAAEIgkAAAQiCQAABCIJAAAEIgkAAAQiCQAABC6NXcDpVKZdqRAADMQnPvf+3VhnMAAGibFqodluwAAEIgkAAAQiCQAABCIJAAAEIgkAAAQiCQAABCIJAAAEIgkAAAQiCQAABCIJAAAEIgkAAAQiCQAABCIJAAAEIgkAAAQiCQAABCIJAAAEIgkAAAQiCQAADdMZAuXbqk+l8rVqz4+uuvHR0dy8vL5WPefffdF198UTnl7NmzKpVq37598o85OTkqlSoiIkI54NixYyqVKjk5OT8/X2n2oYce8vb2Li0tlU9xdXW95zCUvT/++KPR3szMTEmSHnroocrKSkmS6urq3njjDRcXF0tLy8cee+ztt9+WJKmoqOiPf/xj41569epVWVlZVFSktNOrV69HHnlk27Zt9xxD6x06dGjWrFltOFGSpLS0tJkzZ95v+8HBwcnJyVIHqKmpCQkJMdr40ksvWVpaJiYmSmbgQX6bQLfXq91bdHBw+PHHH402BgUFvfrqq0lJSTk5OTExMSdPnlR27dq1y8/Pb8eOHf7+/vKWQYMGpaSkvPPOO/JXr+t0uhEjRsi7NBrNtWvXJEm6devWsmXLXn/99Y8++qj1w1DY2trK2XNXr7zyyrVr15KTk4cNG/b9998vWLDAzs5u/Pjx93zK9fX16enpU6ZMCQwMvOcYzFB1dfU333zTeEtNTc2hQ4dKSkr69evXeeMCYE5Ldm+99db58+e3b98eFBT04Ycf2tnZydvr6ur27t373nvvnT179uLFi/JGtVqt1WqzsrLkl/j8/HytVmvUoJWV1UsvvXTmzJl2H2pRUdGhQ4cOHDjg4eGhVqu9vLx27dplZWXVytNramokSerZs2cbuk5LS/Pz8xs3blzfvn0XL17822+/KbsMBsOaNWucnZ379OkTEBAg73rrrbfs7e0HDBiwZcsW+bB3331Xo9H84Q9/WLNmjcFgkCSpsrLSx8dHrVa/+OKLtbW1kiRt2LDB4Y5169bJx8jtL1++3Nra2svL68aNG0q/Rg2mpaV5e3sPGjRo4cKFTQc/efLksWPH2tjYBAQE1NXVNe1r6tSpFy9ebFzODhs27NatW/379//8888bt2x0Ylpa2pw5c5555hm1Wv3ee+9t3Lixb9++Y8aM+fnnn1uYorsOae7cubGxsfIpkydPzsjIUMbfXBetablx6aOUmHf9rQEwXSCVlpY2Xqc6evSoJEmWlpbx8fHh4eHe3t7PPvuscnBKSsqwYcMeffRRPz+/nTt3Ktv9/f2TkpIkSfryyy/vWpr8/PPP8fHxHh4e9zUMRVVVlbIrODi48a6MjAwvLy9bW1tli5eXV1BQUGuecu/evcPDw3ft2iWf3vIY7urIkSPR0dFFRUWnT5/es2dP4+3ffPNNTk7O9evXi4uLv/7666NHj+7evfvbb7/NyMjYtGlTYWHhsWPHUlJSvvvuuwsXLly8eFE+/eTJkytXrrxy5crFixf/9a9/ffbZZzqd7ttvv83Ozj569OjHH38st79v377jx48XFBTExMR8++238sa7NpiZmfnVV1/Jy5hGMjMz33///cLCwtzc3KNHjzbtKy0tzcXFJT8/XzklPz+/f//+BoPBwsJCafmug/z888///ve/nzlzRo6o69evDxgw4MCBAy1MUdMhSZK0YMGChIQESZLKysquXLni5eWltNBcF61s+a6/zaYnAujkJTtJkk6dOmVra/vNN9/U19f36vV//e7evfull16SJGn2HRs2bJC3T58+ff369e+8805iYuLKlSvPnTsnby8uLpbX8fr06fP000/v3r37fodxzyU7g8EgdyFJUnR09Nq1ayVJGjhw4FdffaXUE/JhBoOhR48eSl9VVVUvv/yym5ubkl5tWLKbNm3aM888I0nSq6++euzYMeWKy9SpU6urq1etWnXu3LlTp07duHEjNzd33rx5Q4YMkadFkqS4uLgvv/zSyclJPqVfv36zZs16+umnJ0+eLEnS2LFjy8vLT58+vWTJEhcXF0mSVq5cefjwYXn+5b6c7pgxY4bcwtGjR5s2OHr06Mcee+yug/fy8vL09JQf/PzzzydPnjTqa8qUKS08d6Xlr776yujEoKCgcePGPfnkk/IwFixYYGNj4+npWVFRoZzedIpsbW2NhiRJ0oQJ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" alt="Placeholder layout — carrier, pads, caliper body, piston, slide pins. Not from any manual."><figcaption>Placeholder layout — carrier, pads, caliper body, piston, slide pins. Not from any manual.</figcaption></figure>
+<div class="li n" data-n="1">Remove the wheel</div>
+<div class="li n" data-n="2">Put the parking brake actuator into maintenance mode and wait for the motor to finish retracting</div>
+<div class="li n" data-n="3">Photograph the wear sensor routing and every clip before removing anything</div>
+<div class="li n" data-n="4">Unbolt the lower slide pin bolt, pivot the caliper body up, support it on wire</div>
+<div class="li n" data-n="5">Lift out the old pads and the anti-rattle shims, keeping inner and outer separate</div>
+<div class="li n" data-n="6">Withdraw the slide pins, wipe them, inspect the boots</div>
+<div class="cal warn">Left and right are mirrored. Do one side completely, then use it as the reference photograph for the other.</div>
+<hr>
+<h2>4. Inspection</h2>
+<div class="tw"><table><thead><tr><th>Item</th><th>Standard</th><th>Limit</th></tr></thead><tbody><tr><td>Pad lining thickness</td><td>11.0 mm</td><td>1.0 mm min</td></tr><tr><td>Disc thickness</td><td>12.0 mm</td><td>10.5 mm min</td></tr><tr><td>Disc runout</td><td>—</td><td>0.05 mm max</td></tr></tbody></table></div>
+<label class="ck"><input type="checkbox"><span>Pads worn evenly across the face, and inner against outer</span></label>
+<label class="ck"><input type="checkbox"><span>Slide pins move freely by hand, boots not split or perished</span></label>
+<label class="ck"><input type="checkbox"><span>Piston boot intact, no fluid weeping behind it</span></label>
+<label class="ck"><input type="checkbox"><span>Disc face free of scoring, outer edge lip within limit</span></label>
+<label class="ck"><input type="checkbox"><span>Wear sensor intact, or the replacement on hand</span></label>
+<div class="cal warn">Uneven inner-to-outer wear is a seized slide pin, not a pad fault. New pads on a seized pin wear out exactly the same way.</div>
+<hr>
+<h2>5. Reassembly</h2>
+<div class="li n" data-n="1">Clean the carrier abutments back to bare metal — do not file them</div>
+<div class="li n" data-n="2">Grease the abutment contact points and the slide pins with high-temperature grease, and keep copper grease off the pin rubber</div>
+<div class="li n" data-n="3">Fit new shims, then the pads, with the wear sensor on the specified side</div>
+<div class="li n" data-n="4">Retract the piston by the method established in §2 — screw or press</div>
+<div class="li n" data-n="5">Check the reservoir level as you go, not after both sides are done</div>
+<div class="li n" data-n="6">Pivot the caliper down, torque the slide pin bolt per table</div>
+<div class="li n" data-n="7">Refit the wheel, torque per table in a star pattern</div>
+<div class="li n" data-n="8"><strong>Take the actuator out of maintenance mode before lowering the car</strong></div>
+<div class="li n" data-n="9">Pump the brake pedal until firm *before the vehicle moves*</div>
+<div class="cal danger">A vehicle moved before the pedal is pumped firm has no brakes on the first application.</div>
+<hr>
+<h2>6. Final checks and road test</h2>
+<label class="ck"><input type="checkbox"><span>Pedal firm and high, not sinking under steady pressure</span></label>
+<label class="ck"><input type="checkbox"><span>Reservoir between MIN and MAX, cap seated</span></label>
+<label class="ck"><input type="checkbox"><span>Parking brake warning cleared on the dash</span></label>
+<label class="ck"><input type="checkbox"><span>Parking brake holds on a slope, in both directions</span></label>
+<label class="ck"><input type="checkbox"><span>Wheel nuts re-torqued with the car on the ground</span></label>
+<label class="ck"><input type="checkbox"><span>Low-speed stops in an empty area before any road use</span></label>
+<label class="ck"><input type="checkbox"><span>Bed-in per the pad manufacturer's instructions</span></label>
+<div class="cal warn">Re-check the wheel nut torque again after the first short drive.</div>
+<hr>
+<h2>7. Torque values</h2>
+<div class="tw"><table><thead><tr><th>Fastener</th><th>N·m</th><th>Note</th></tr></thead><tbody><tr><td>Slide pin bolt</td><td>34</td><td>25 ft-lb</td></tr><tr><td>Carrier-to-knuckle bolt</td><td>110</td><td>81 ft-lb</td></tr><tr><td>Wheel nut</td><td>103</td><td>76 ft-lb, star pattern</td></tr><tr><td>Wear sensor screw</td><td>1.4</td><td><strong>12 in-lbf — not ft-lb</strong></td></tr><tr><td><del>Brake hose union</del></td><td><del>15</del></td><td>hose not disconnected in this job</td></tr></tbody></table></div>
+<p><strong>One-time parts:</strong> slide pin bolts ×2 per side, anti-rattle shims ×4 per side</p>
+<hr>
+<h2>8. If you get stuck</h2>
+<div class="tw"><table><thead><tr><th>Situation</th><th>What to do</th></tr></thead><tbody><tr><td>Piston will not retract</td><td>Stop. Confirm maintenance mode is actually engaged, and confirm screw vs press, before applying any more force</td></tr><tr><td>Scan tool will not enter maintenance mode</td><td>Battery voltage is the usual cause — put it on a charger and retry before removing anything</td></tr><tr><td>Caliper will not pivot up</td><td>The upper slide pin is seized in its bore, not the bolt — free the pin rather than levering the body</td></tr><tr><td>Reservoir overflowed</td><td>Flush it off paintwork with water immediately; brake fluid lifts paint in minutes</td></tr><tr><td>Pedal goes to the floor afterwards</td><td>Do not drive it. Pump and re-check; if it stays soft, something has moved past a seal</td></tr><tr><td>Parking brake warning stays on</td><td>Still in maintenance mode, or the actuator did not complete its cycle — re-run the exit routine</td></tr></tbody></table></div>
+<hr>
+<p>*Format demonstration for <code>service-manual-offline-kit</code>. A real job sheet is built from your own manual pages and carries your own vehicle's figures.*</p>
+</body>
+</html>
